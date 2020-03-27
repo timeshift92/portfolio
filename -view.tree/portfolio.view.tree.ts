@@ -2,12 +2,12 @@ namespace $ { export class $my_portfolio extends $mol_demo_large {
 
 	/**
 	 *  ```
-	 *  attr * mol_theme \$mol_theme_dark
+	 *  attr * mol_theme \$mol_theme_auto
 	 *  ```
 	 **/
 	attr() {
 		return ({
-			"mol_theme" :  "$mol_theme_dark" ,
+			"mol_theme" :  "$mol_theme_auto" ,
 		})
 	}
 

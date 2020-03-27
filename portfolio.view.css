@@ -1,3 +1,39 @@
+
+[mol_theme] {
+	background-color: var(--mol_theme_back);
+	color: var(--mol_theme_text);
+	fill: var(--mol_theme_text);
+}
+
+@media (prefers-color-scheme: light) {
+	[mol_theme="$mol_theme_auto"] {
+		--mol_theme_back: hsl( 210 , 50% , 99% );
+		--mol_theme_hover: rgba( 0 , 0 , 0 , .05 );
+		--mol_theme_current: hsl( 210 , 100% , 80% );
+		--mol_theme_text: rgba( 0 , 0 , 0 , .9 );
+		--mol_theme_control: hsl(267, 45%, 35%,0.5);
+		--mol_theme_shade: rgba( 0 , 0 , 0 , .5 );
+		--mol_theme_line: rgba( 220 , 220 , 220 , 1 );
+		--mol_theme_focus: hsla( 0 , 60% , 50% , 0.75 );
+		--mol_theme_field: white;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	[mol_theme="$mol_theme_auto"] {
+		--mol_theme_back: hsl( 210 , 50% , 10% );
+		--mol_theme_hover: #333;
+		--mol_theme_current: hsl( 210 , 100% , 20% );
+		--mol_theme_text: rgba( 255 , 255 , 255 , .8 );
+		--mol_theme_control: hsl(267, 45%, 35%);
+		--mol_theme_shade: rgb(43, 17, 64);
+		--mol_theme_line: rgba( 50 , 50 , 50 , 1 );
+		--mol_theme_focus: rgba( 204 , 68 , 50 , .75 );
+		--mol_theme_field: black;
+	}
+}
+
+
 [my_portfolio_page_head]{
 	display: flex;
 	justify-content: start;
@@ -11,7 +47,7 @@
 }
 [my_portfolio_image]{
 	box-shadow: none;
-	max-width: 20vh;
+	max-width: 15vh;
 	
 }
 [my_portfolio_app_title]{
@@ -22,5 +58,5 @@
 	margin: 10px;
     -webkit-box-shadow: 8px 0px 20px -2px rgb(85, 39, 97);
     -moz-box-shadow: 8px 0px 20px -2px rgb(85, 39, 97);
-    box-shadow: 8px 0px 20px -2px rgb(85, 39, 97);
+    box-shadow: 8px 0px 20px -2px var(--mol_theme_shade);
 }

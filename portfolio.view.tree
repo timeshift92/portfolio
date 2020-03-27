@@ -1,5 +1,5 @@
 $my_portfolio $mol_demo_large
-	attr * mol_theme \$mol_theme_dark
+	attr * mol_theme \$mol_theme_auto
 	title @ \TScorp development portfolio
 	sub /
 		<= Page $mol_page
