@@ -1,0 +1,3 @@
+namespace $ { $mol_style_attach( "my/portfolio/portfolio.view.css",
+ "[my_portfolio_page_head]{\n\tdisplay: flex;\n\tjustify-content: start;\n\tbackground: #553282;\n}\n[mol_page_body]{\n\tdisplay: grid;\n    grid-template-rows: repeat(4,50vh);\n\tgrid-template-columns: repeat(4,1fr);\n\tgrid-gap: 1rem;\n}\n[my_portfolio_image]{\n\tbox-shadow: none;\n\tmax-width: 20vh;\n\t\n}\n[my_portfolio_app_title]{\n\tcolor: #553282;\n}\n\n[my_portfolio_app]{\n\tmargin: 10px;\n    -webkit-box-shadow: 8px 0px 20px -2px rgb(85, 39, 97);\n    -moz-box-shadow: 8px 0px 20px -2px rgb(85, 39, 97);\n    box-shadow: 8px 0px 20px -2px rgb(85, 39, 97);\n}\n"
+) }

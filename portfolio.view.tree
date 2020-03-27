@@ -1,0 +1,35 @@
+$my_portfolio $mol_demo_large
+	attr * mol_theme \$mol_theme_dark
+	title @ \TScorp development portfolio
+	sub /
+		<= Page $mol_page
+			title null
+			head /
+				<= Image $mol_image
+					uri <= image \my/portfolio/logo.svg
+			body /
+				<= caffeine $my_portfolio_app
+					title @ \ caffeine
+					details \http://caffeine.uz
+				<= uztelecom $my_portfolio_app
+					title @ \ uztelecom
+					details \https://uztelecom.uz
+				<= spphone $my_portfolio_app
+					title @ \ spphone
+					details \https://spphone.uz
+				<= korean $my_portfolio_app
+					title @ \ korean
+					details \https://korean.uz
+				<= mediabox $my_portfolio_app
+					title @ \ mediabox
+					details \https://mediabox.uz
+			foot / null
+$my_portfolio_app $mol_link
+	target \_blank
+	uri <= details \
+	preview \
+	sub / 
+		<= Title $mol_view sub / <= title \
+		<= Demo $mol_demo_ext
+			style * background-image <= background \
+			uri <= details \
