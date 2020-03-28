@@ -1,3 +1,9 @@
+[my_portfolio_scroll] {
+	display: flex;
+	flex-wrap: wrap;
+	padding: .5rem;
+}
+
 
 [mol_theme] {
 	background-color: var(--mol_theme_back);
@@ -33,17 +39,22 @@
 	}
 }
 
-
+[my_portfolio] {
+	display: flex;
+	background: var(--mol_theme_field);
+}
 [my_portfolio_page_head]{
 	display: flex;
 	justify-content: start;
 	background: #553282;
 }
-[mol_page_body]{
-	display: grid;
-    grid-template-rows: repeat(4,50vh);
-	grid-template-columns: repeat(4,1fr);
-	grid-gap: 1rem;
+[my_portfolio_app]{
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 26rem;
+	margin: 0;
+	height: 15.5rem;
+	cursor: pointer;
 }
 [my_portfolio_image]{
 	box-shadow: none;
@@ -59,4 +70,12 @@
     -webkit-box-shadow: 8px 0px 20px -2px rgb(85, 39, 97);
     -moz-box-shadow: 8px 0px 20px -2px rgb(85, 39, 97);
     box-shadow: 8px 0px 20px -2px var(--mol_theme_shade);
+}
+[my_portfolio_app_demo]{
+	pointer-events: none;
+	box-shadow: 0 0 0 2px var(--mol_theme_line);
+	width: 200%;
+	height: 26rem;
+	transform: translate( -25% , -25% ) scale( .5 );
+	background-size: cover;
 }

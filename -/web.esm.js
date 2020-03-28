@@ -1422,6 +1422,27 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_window extends $.$mol_object {
+        static size(next, force) {
+            return next || {
+                width: self.innerWidth,
+                height: self.innerHeight,
+            };
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_window, "size", null);
+    $.$mol_window = $mol_window;
+    self.addEventListener('resize', $.$mol_fiber_root($.$mol_log_group(`$mol_window resize`, () => {
+        $mol_window.size(undefined, $.$mol_mem_force_cache);
+    })));
+})($ || ($ = {}));
+//window.web.js.map
+;
+"use strict";
+var $;
+(function ($) {
     function $mol_dict_key(value) {
         if (!value)
             return value;
@@ -1533,155 +1554,6 @@ var $;
     $.$mol_mem_key = $mol_mem_key;
 })($ || ($ = {}));
 //key.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_state_session extends $.$mol_object {
-        static native() {
-            if (this['native()'])
-                return this['native()'];
-            check: try {
-                const native = $.$mol_dom_context.sessionStorage;
-                if (!native)
-                    break check;
-                native.setItem('', '');
-                native.removeItem('');
-                return this['native()'] = native;
-            }
-            catch (error) {
-                console.warn(error);
-            }
-            return this['native()'] = {
-                getItem(key) {
-                    return this[':' + key];
-                },
-                setItem(key, value) {
-                    this[':' + key] = value;
-                },
-                removeItem(key) {
-                    this[':' + key] = void 0;
-                }
-            };
-        }
-        static value(key, next) {
-            if (next === void 0)
-                return JSON.parse(this.native().getItem(key) || 'null');
-            if (next === null)
-                this.native().removeItem(key);
-            else
-                this.native().setItem(key, JSON.stringify(next));
-            return next;
-        }
-        prefix() { return ''; }
-        value(key, next) {
-            return $mol_state_session.value(this.prefix() + '.' + key, next);
-        }
-    }
-    __decorate([
-        $.$mol_mem_key
-    ], $mol_state_session, "value", null);
-    $.$mol_state_session = $mol_state_session;
-})($ || ($ = {}));
-//session.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_decor {
-        constructor(value) {
-            this.value = value;
-        }
-        prefix() { return ''; }
-        valueOf() { return this.value; }
-        postfix() { return ''; }
-        toString() {
-            return `${this.prefix()}${this.valueOf()}${this.postfix()}`;
-        }
-    }
-    $.$mol_decor = $mol_decor;
-})($ || ($ = {}));
-//decor.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_style_unit extends $.$mol_decor {
-        constructor(value, literal) {
-            super(value);
-            this.literal = literal;
-        }
-        postfix() {
-            return this.literal;
-        }
-        static per(value) { return new $mol_style_unit(value, '%'); }
-        static px(value) { return new $mol_style_unit(value, 'px'); }
-        static mm(value) { return new $mol_style_unit(value, 'mm'); }
-        static cm(value) { return new $mol_style_unit(value, 'cm'); }
-        static Q(value) { return new $mol_style_unit(value, 'Q'); }
-        static in(value) { return new $mol_style_unit(value, 'in'); }
-        static pc(value) { return new $mol_style_unit(value, 'pc'); }
-        static pt(value) { return new $mol_style_unit(value, 'pt'); }
-        static cap(value) { return new $mol_style_unit(value, 'cap'); }
-        static ch(value) { return new $mol_style_unit(value, 'ch'); }
-        static em(value) { return new $mol_style_unit(value, 'em'); }
-        static rem(value) { return new $mol_style_unit(value, 'rem'); }
-        static ex(value) { return new $mol_style_unit(value, 'ex'); }
-        static ic(value) { return new $mol_style_unit(value, 'ic'); }
-        static lh(value) { return new $mol_style_unit(value, 'lh'); }
-        static rlh(value) { return new $mol_style_unit(value, 'rlh'); }
-        static vh(value) { return new $mol_style_unit(value, 'vh'); }
-        static vw(value) { return new $mol_style_unit(value, 'vw'); }
-        static vi(value) { return new $mol_style_unit(value, 'vi'); }
-        static vb(value) { return new $mol_style_unit(value, 'vb'); }
-        static vmin(value) { return new $mol_style_unit(value, 'vmin'); }
-        static vmax(value) { return new $mol_style_unit(value, 'vmax'); }
-    }
-    $.$mol_style_unit = $mol_style_unit;
-})($ || ($ = {}));
-//unit.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_style_func extends $.$mol_decor {
-        constructor(value, name) {
-            super(value);
-            this.name = name;
-        }
-        prefix() { return this.name + '('; }
-        postfix() { return ')'; }
-        static calc(value) {
-            return new $mol_style_func(value, 'calc');
-        }
-        static fit_content(value) {
-            return new $mol_style_func(value, 'fit-content');
-        }
-    }
-    $.$mol_style_func = $mol_style_func;
-})($ || ($ = {}));
-//func.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_window extends $.$mol_object {
-        static size(next, force) {
-            return next || {
-                width: self.innerWidth,
-                height: self.innerHeight,
-            };
-        }
-    }
-    __decorate([
-        $.$mol_mem
-    ], $mol_window, "size", null);
-    $.$mol_window = $mol_window;
-    self.addEventListener('resize', $.$mol_fiber_root($.$mol_log_group(`$mol_window resize`, () => {
-        $mol_window.size(undefined, $.$mol_mem_force_cache);
-    })));
-})($ || ($ = {}));
-//window.web.js.map
 ;
 "use strict";
 var $;
@@ -2371,6 +2243,664 @@ var $;
 //view.web.js.map
 ;
 "use strict";
+var $;
+(function ($) {
+    class $mol_demo_large extends $.$mol_view {
+    }
+    $.$mol_demo_large = $mol_demo_large;
+})($ || ($ = {}));
+//large.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_demo_large extends $.$mol_demo_large {
+            minimal_height() {
+                return $.$mol_window.size().height - 100;
+            }
+            minimal_width() {
+                return this.$.$mol_window.size().width - 300;
+            }
+        }
+        $$.$mol_demo_large = $mol_demo_large;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//large.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/demo/large/large.view.css", "[mol_demo_large] {\n\theight: 100%;\n\twidth: 100%;\n\toverflow: hidden;\n\tbox-shadow: inset 0 0 0 .5px var(--mol_theme_line);\n\tbackground: var(--mol_theme_back);\n\tcolor: var(--mol_theme_text);\n\tposition: relative;\n\tflex: 1 0 auto;\n\tdisplay: flex;\n\talign-items: stretch;\n\tbox-sizing: border-box;\n\talign-self: stretch;\n}\n");
+})($ || ($ = {}));
+//large.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_state_local extends $.$mol_object {
+        static native() {
+            if (this['native()'])
+                return this['native()'];
+            check: try {
+                const native = $.$mol_dom_context.localStorage;
+                if (!native)
+                    break check;
+                native.setItem('', '');
+                native.removeItem('');
+                return this['native()'] = native;
+            }
+            catch (error) {
+                console.warn(error);
+            }
+            return this['native()'] = {
+                getItem(key) {
+                    return this[':' + key];
+                },
+                setItem(key, value) {
+                    this[':' + key] = value;
+                },
+                removeItem(key) {
+                    this[':' + key] = void 0;
+                }
+            };
+        }
+        static value(key, next, force) {
+            if (next === void 0)
+                return JSON.parse(this.native().getItem(key) || 'null');
+            if (next === null)
+                this.native().removeItem(key);
+            else
+                this.native().setItem(key, JSON.stringify(next));
+            return next;
+        }
+        prefix() { return ''; }
+        value(key, next) {
+            return $mol_state_local.value(this.prefix() + '.' + key, next);
+        }
+    }
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_state_local, "value", null);
+    $.$mol_state_local = $mol_state_local;
+})($ || ($ = {}));
+//local.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    self.addEventListener('storage', event => {
+        if (!event.key)
+            return;
+        $.$mol_state_local.value(event.key, undefined, $.$mol_mem_force_cache);
+    });
+})($ || ($ = {}));
+//local.web.js.map
+;
+"use strict";
+var $node = $node || {};
+//node.web.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var _a;
+    const TextDecoder = (_a = globalThis.TextDecoder) !== null && _a !== void 0 ? _a : $node.util.TextDecoder;
+    function $mol_charset_decode(value, code = 'utf8') {
+        return new TextDecoder(code).decode(value);
+    }
+    $.$mol_charset_decode = $mol_charset_decode;
+})($ || ($ = {}));
+//decode.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var _a;
+    const TextEncoder = (_a = globalThis.TextEncoder) !== null && _a !== void 0 ? _a : $node.util.TextEncoder;
+    const encoder = new TextEncoder();
+    function $mol_charset_encode(value) {
+        return encoder.encode(value);
+    }
+    $.$mol_charset_encode = $mol_charset_encode;
+})($ || ($ = {}));
+//encode.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_dom_parse(text, type = 'application/xhtml+xml') {
+        const parser = new $.$mol_dom_context.DOMParser();
+        const doc = parser.parseFromString(text, type);
+        const error = doc.getElementsByTagName('parsererror')[0];
+        if (error)
+            throw new Error(error.textContent);
+        return doc;
+    }
+    $.$mol_dom_parse = $mol_dom_parse;
+})($ || ($ = {}));
+//parse.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_fetch_response extends $.$mol_object2 {
+        constructor(native) {
+            super();
+            this.native = native;
+        }
+        headers() {
+            return this.native.headers;
+        }
+        mime() {
+            return this.headers().get('content-type');
+        }
+        stream() {
+            return this.native.body;
+        }
+        text() {
+            const buffer = this.buffer();
+            const native = this.native;
+            const mime = native.headers.get('content-type') || '';
+            const [, charset] = /charset=(.*)/.exec(mime) || [, 'utf-8'];
+            const decoder = new TextDecoder(charset);
+            return decoder.decode(buffer);
+        }
+        json() {
+            const response = this.native;
+            const parse = $.$mol_fiber_sync(response.json);
+            return parse.call(response);
+        }
+        buffer() {
+            const response = this.native;
+            const parse = $.$mol_fiber_sync(response.arrayBuffer);
+            return parse.call(response);
+        }
+        xml() {
+            return $.$mol_dom_parse(this.text(), 'application/xml');
+        }
+        xhtml() {
+            return $.$mol_dom_parse(this.text(), 'application/xhtml+xml');
+        }
+        html() {
+            return $.$mol_dom_parse(this.text(), 'text/html');
+        }
+    }
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch_response.prototype, "stream", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch_response.prototype, "text", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch_response.prototype, "json", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch_response.prototype, "buffer", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch_response.prototype, "xml", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch_response.prototype, "xhtml", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch_response.prototype, "html", null);
+    $.$mol_fetch_response = $mol_fetch_response;
+    class $mol_fetch extends $.$mol_object2 {
+        static response(input, init) {
+            const response = this.request(input, init);
+            if (Math.floor(response.status / 100) === 2)
+                return new $mol_fetch_response(response);
+            throw new Error(response.statusText || `HTTP Error ${response.status}`);
+        }
+        static stream(input, init) {
+            return this.response(input, init).stream();
+        }
+        static text(input, init) {
+            return this.response(input, init).text();
+        }
+        static json(input, init) {
+            return this.response(input, init).json();
+        }
+        static buffer(input, init) {
+            this.response(input, init).buffer();
+        }
+        static xml(input, init) {
+            return this.response(input, init).xml();
+        }
+        static xhtml(input, init) {
+            return this.response(input, init).xhtml();
+        }
+        static html(input, init) {
+            return this.response(input, init).html();
+        }
+    }
+    $mol_fetch.request = $.$mol_fiber_sync((input, init = {}) => {
+        if (typeof AbortController === 'function') {
+            var controller = new AbortController();
+            init.signal = controller.signal;
+            const fiber = $.$mol_fiber.current;
+            fiber.abort = () => {
+                if (fiber.cursor === -2)
+                    return true;
+                controller.abort();
+                return true;
+            };
+        }
+        let native = $.$mol_dom_context.fetch;
+        if (!native)
+            native = $node['node-fetch'];
+        return native(input, init);
+    });
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch, "response", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch, "stream", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch, "text", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch, "json", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch, "buffer", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch, "xml", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch, "xhtml", null);
+    __decorate([
+        $.$mol_fiber.method
+    ], $mol_fetch, "html", null);
+    $.$mol_fetch = $mol_fetch;
+})($ || ($ = {}));
+//fetch.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_file_not_found extends Error {
+    }
+    $.$mol_file_not_found = $mol_file_not_found;
+    class $mol_file extends $.$mol_object {
+        static absolute(path) {
+            throw new Error('Not implemented yet');
+        }
+        static relative(path) {
+            throw new Error('Not implemented yet');
+        }
+        path() {
+            return '.';
+        }
+        parent() {
+            return this.resolve('..');
+        }
+        reset() {
+            try {
+                this.stat(undefined, $.$mol_mem_force_cache);
+            }
+            catch (error) {
+                if (error instanceof $mol_file_not_found)
+                    return;
+                return $.$mol_fail_hidden(error);
+            }
+        }
+        version() {
+            return this.stat().mtime.getTime().toString(36).toUpperCase();
+        }
+        exists(next) {
+            let exists = true;
+            try {
+                this.stat();
+            }
+            catch (error) {
+                if (error instanceof $mol_file_not_found)
+                    exists = false;
+                else
+                    return $.$mol_fail_hidden(error);
+            }
+            if (next === undefined)
+                return exists;
+            if (next === exists)
+                return exists;
+            if (next)
+                this.parent().exists(true);
+            this.ensure(next);
+            this.reset();
+            return next;
+        }
+        type() {
+            return this.stat().type;
+        }
+        name() {
+            return this.path().replace(/^.*\//, '');
+        }
+        ext() {
+            const match = /((?:\.\w+)+)$/.exec(this.path());
+            return match ? match[1].substring(1) : '';
+        }
+        text(next, force) {
+            return $.$mol_charset_decode(this.buffer(next === undefined ? undefined : $.$mol_charset_encode(next), force));
+        }
+        fail(error) {
+            this.buffer(error, $.$mol_mem_force_fail);
+            this.stat(error, $.$mol_mem_force_fail);
+        }
+        buffer_cached(buffer) {
+            const ctime = new Date();
+            const stat = {
+                type: 'file',
+                size: buffer.length,
+                ctime,
+                atime: ctime,
+                mtime: ctime
+            };
+            this.buffer(buffer, $.$mol_mem_force_cache);
+            this.stat(stat, $.$mol_mem_force_cache);
+        }
+        text_cached(content) {
+            this.buffer_cached($.$mol_charset_encode(content));
+        }
+        find(include, exclude) {
+            const found = [];
+            const sub = this.sub();
+            for (const child of sub) {
+                const child_path = child.path();
+                if (exclude && child_path.match(exclude))
+                    continue;
+                if (!include || child_path.match(include))
+                    found.push(child);
+                if (child.type() === 'dir') {
+                    const sub_child = child.find(include, exclude);
+                    for (const child of sub_child)
+                        found.push(child);
+                }
+            }
+            return found;
+        }
+    }
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_file, "absolute", null);
+    $.$mol_file = $mol_file;
+})($ || ($ = {}));
+//file.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_file_web extends $.$mol_file {
+        static absolute(path) {
+            return this.make({
+                path: $.$mol_const(path)
+            });
+        }
+        static relative(path) {
+            return this.absolute(new URL(path, this.base).toString());
+        }
+        buffer(next, force) {
+            if (next !== undefined)
+                throw new Error(`Saving content not supported: ${this.path}`);
+            const response = $.$mol_fetch.response(this.path());
+            if (response.native.status === 404)
+                throw new $.$mol_file_not_found(`File not found: ${this.path()}`);
+            return new Uint8Array(response.buffer());
+        }
+        watcher() {
+            throw new Error('$mol_file_web.watcher() not implemented');
+        }
+        stat(next, force) {
+            let stat = next;
+            if (next === undefined) {
+                const content = this.text();
+                const ctime = new Date();
+                stat = {
+                    type: 'file',
+                    size: content.length,
+                    ctime,
+                    atime: ctime,
+                    mtime: ctime
+                };
+            }
+            this.parent().watcher();
+            return stat;
+        }
+        resolve(path) {
+            let res = this.path() + '/' + path;
+            while (true) {
+                let prev = res;
+                res = res.replace(/\/[^\/.]+\/\.\.\//, '/');
+                if (prev === res)
+                    break;
+            }
+            return this.constructor.absolute(res);
+        }
+        ensure(next) {
+            throw new Error('$mol_file_web.ensure() not implemented');
+        }
+        sub() {
+            throw new Error('$mol_file_web.sub() not implemented');
+        }
+        relate(base = this.constructor.relative('.')) {
+            throw new Error('$mol_file_web.relate() not implemented');
+        }
+        append(next) {
+            throw new Error('$mol_file_web.append() not implemented');
+        }
+    }
+    $mol_file_web.base = $.$mol_dom_context.document
+        ? new URL('.', $.$mol_dom_context.document.currentScript['src']).toString()
+        : '';
+    __decorate([
+        $.$mol_mem
+    ], $mol_file_web.prototype, "buffer", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_file_web.prototype, "stat", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_file_web.prototype, "sub", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_file_web, "absolute", null);
+    $.$mol_file_web = $mol_file_web;
+    $.$mol_file = $mol_file_web;
+})($ || ($ = {}));
+//file.web.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_locale extends $.$mol_object {
+        static lang_default() {
+            return 'en';
+        }
+        static lang(next) {
+            return $.$mol_state_local.value('locale', next) || $.$mol_dom_context.navigator.language.replace(/-.*/, '') || this.lang_default();
+        }
+        static source(lang) {
+            return JSON.parse($.$mol_file.relative(`web.locale=${lang}.json`).text().toString());
+        }
+        static texts(lang, next) {
+            if (next)
+                return next;
+            try {
+                return this.source(lang).valueOf();
+            }
+            catch (error) {
+                if ('then' in error)
+                    $.$mol_fail_hidden(error);
+                const def = this.lang_default();
+                if (lang === def)
+                    throw error;
+                return this.source(def);
+            }
+        }
+        static text(key) {
+            for (let lang of [this.lang(), 'en']) {
+                const text = this.texts(lang)[key];
+                if (text)
+                    return text;
+                console.warn(`Not translated to "${lang}": ${key}`);
+            }
+            return `<${key}>`;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_locale, "lang_default", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_locale, "lang", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_locale, "source", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_locale, "texts", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_locale, "text", null);
+    $.$mol_locale = $mol_locale;
+})($ || ($ = {}));
+//locale.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_state_session extends $.$mol_object {
+        static native() {
+            if (this['native()'])
+                return this['native()'];
+            check: try {
+                const native = $.$mol_dom_context.sessionStorage;
+                if (!native)
+                    break check;
+                native.setItem('', '');
+                native.removeItem('');
+                return this['native()'] = native;
+            }
+            catch (error) {
+                console.warn(error);
+            }
+            return this['native()'] = {
+                getItem(key) {
+                    return this[':' + key];
+                },
+                setItem(key, value) {
+                    this[':' + key] = value;
+                },
+                removeItem(key) {
+                    this[':' + key] = void 0;
+                }
+            };
+        }
+        static value(key, next) {
+            if (next === void 0)
+                return JSON.parse(this.native().getItem(key) || 'null');
+            if (next === null)
+                this.native().removeItem(key);
+            else
+                this.native().setItem(key, JSON.stringify(next));
+            return next;
+        }
+        prefix() { return ''; }
+        value(key, next) {
+            return $mol_state_session.value(this.prefix() + '.' + key, next);
+        }
+    }
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_state_session, "value", null);
+    $.$mol_state_session = $mol_state_session;
+})($ || ($ = {}));
+//session.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_decor {
+        constructor(value) {
+            this.value = value;
+        }
+        prefix() { return ''; }
+        valueOf() { return this.value; }
+        postfix() { return ''; }
+        toString() {
+            return `${this.prefix()}${this.valueOf()}${this.postfix()}`;
+        }
+    }
+    $.$mol_decor = $mol_decor;
+})($ || ($ = {}));
+//decor.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_style_unit extends $.$mol_decor {
+        constructor(value, literal) {
+            super(value);
+            this.literal = literal;
+        }
+        postfix() {
+            return this.literal;
+        }
+        static per(value) { return new $mol_style_unit(value, '%'); }
+        static px(value) { return new $mol_style_unit(value, 'px'); }
+        static mm(value) { return new $mol_style_unit(value, 'mm'); }
+        static cm(value) { return new $mol_style_unit(value, 'cm'); }
+        static Q(value) { return new $mol_style_unit(value, 'Q'); }
+        static in(value) { return new $mol_style_unit(value, 'in'); }
+        static pc(value) { return new $mol_style_unit(value, 'pc'); }
+        static pt(value) { return new $mol_style_unit(value, 'pt'); }
+        static cap(value) { return new $mol_style_unit(value, 'cap'); }
+        static ch(value) { return new $mol_style_unit(value, 'ch'); }
+        static em(value) { return new $mol_style_unit(value, 'em'); }
+        static rem(value) { return new $mol_style_unit(value, 'rem'); }
+        static ex(value) { return new $mol_style_unit(value, 'ex'); }
+        static ic(value) { return new $mol_style_unit(value, 'ic'); }
+        static lh(value) { return new $mol_style_unit(value, 'lh'); }
+        static rlh(value) { return new $mol_style_unit(value, 'rlh'); }
+        static vh(value) { return new $mol_style_unit(value, 'vh'); }
+        static vw(value) { return new $mol_style_unit(value, 'vw'); }
+        static vi(value) { return new $mol_style_unit(value, 'vi'); }
+        static vb(value) { return new $mol_style_unit(value, 'vb'); }
+        static vmin(value) { return new $mol_style_unit(value, 'vmin'); }
+        static vmax(value) { return new $mol_style_unit(value, 'vmax'); }
+    }
+    $.$mol_style_unit = $mol_style_unit;
+})($ || ($ = {}));
+//unit.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_style_func extends $.$mol_decor {
+        constructor(value, name) {
+            super(value);
+            this.name = name;
+        }
+        prefix() { return this.name + '('; }
+        postfix() { return ')'; }
+        static calc(value) {
+            return new $mol_style_func(value, 'calc');
+        }
+        static fit_content(value) {
+            return new $mol_style_func(value, 'fit-content');
+        }
+    }
+    $.$mol_style_func = $mol_style_func;
+})($ || ($ = {}));
+//func.js.map
+;
+"use strict";
 //result.js.map
 ;
 "use strict";
@@ -3021,536 +3551,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_demo_large extends $.$mol_view {
-    }
-    $.$mol_demo_large = $mol_demo_large;
-})($ || ($ = {}));
-//large.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $mol_demo_large extends $.$mol_demo_large {
-            minimal_height() {
-                return $.$mol_window.size().height - 100;
-            }
-            minimal_width() {
-                return this.$.$mol_window.size().width - 300;
-            }
-        }
-        $$.$mol_demo_large = $mol_demo_large;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-//large.view.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_style_attach("mol/demo/large/large.view.css", "[mol_demo_large] {\n\theight: 100%;\n\twidth: 100%;\n\toverflow: hidden;\n\tbox-shadow: inset 0 0 0 .5px var(--mol_theme_line);\n\tbackground: var(--mol_theme_back);\n\tcolor: var(--mol_theme_text);\n\tposition: relative;\n\tflex: 1 0 auto;\n\tdisplay: flex;\n\talign-items: stretch;\n\tbox-sizing: border-box;\n\talign-self: stretch;\n}\n");
-})($ || ($ = {}));
-//large.view.css.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_state_local extends $.$mol_object {
-        static native() {
-            if (this['native()'])
-                return this['native()'];
-            check: try {
-                const native = $.$mol_dom_context.localStorage;
-                if (!native)
-                    break check;
-                native.setItem('', '');
-                native.removeItem('');
-                return this['native()'] = native;
-            }
-            catch (error) {
-                console.warn(error);
-            }
-            return this['native()'] = {
-                getItem(key) {
-                    return this[':' + key];
-                },
-                setItem(key, value) {
-                    this[':' + key] = value;
-                },
-                removeItem(key) {
-                    this[':' + key] = void 0;
-                }
-            };
-        }
-        static value(key, next, force) {
-            if (next === void 0)
-                return JSON.parse(this.native().getItem(key) || 'null');
-            if (next === null)
-                this.native().removeItem(key);
-            else
-                this.native().setItem(key, JSON.stringify(next));
-            return next;
-        }
-        prefix() { return ''; }
-        value(key, next) {
-            return $mol_state_local.value(this.prefix() + '.' + key, next);
-        }
-    }
-    __decorate([
-        $.$mol_mem_key
-    ], $mol_state_local, "value", null);
-    $.$mol_state_local = $mol_state_local;
-})($ || ($ = {}));
-//local.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    self.addEventListener('storage', event => {
-        if (!event.key)
-            return;
-        $.$mol_state_local.value(event.key, undefined, $.$mol_mem_force_cache);
-    });
-})($ || ($ = {}));
-//local.web.js.map
-;
-"use strict";
-var $node = $node || {};
-//node.web.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    var _a;
-    const TextDecoder = (_a = globalThis.TextDecoder) !== null && _a !== void 0 ? _a : $node.util.TextDecoder;
-    function $mol_charset_decode(value, code = 'utf8') {
-        return new TextDecoder(code).decode(value);
-    }
-    $.$mol_charset_decode = $mol_charset_decode;
-})($ || ($ = {}));
-//decode.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    var _a;
-    const TextEncoder = (_a = globalThis.TextEncoder) !== null && _a !== void 0 ? _a : $node.util.TextEncoder;
-    const encoder = new TextEncoder();
-    function $mol_charset_encode(value) {
-        return encoder.encode(value);
-    }
-    $.$mol_charset_encode = $mol_charset_encode;
-})($ || ($ = {}));
-//encode.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_dom_parse(text, type = 'application/xhtml+xml') {
-        const parser = new $.$mol_dom_context.DOMParser();
-        const doc = parser.parseFromString(text, type);
-        const error = doc.getElementsByTagName('parsererror')[0];
-        if (error)
-            throw new Error(error.textContent);
-        return doc;
-    }
-    $.$mol_dom_parse = $mol_dom_parse;
-})($ || ($ = {}));
-//parse.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_fetch_response extends $.$mol_object2 {
-        constructor(native) {
-            super();
-            this.native = native;
-        }
-        headers() {
-            return this.native.headers;
-        }
-        mime() {
-            return this.headers().get('content-type');
-        }
-        stream() {
-            return this.native.body;
-        }
-        text() {
-            const buffer = this.buffer();
-            const native = this.native;
-            const mime = native.headers.get('content-type') || '';
-            const [, charset] = /charset=(.*)/.exec(mime) || [, 'utf-8'];
-            const decoder = new TextDecoder(charset);
-            return decoder.decode(buffer);
-        }
-        json() {
-            const response = this.native;
-            const parse = $.$mol_fiber_sync(response.json);
-            return parse.call(response);
-        }
-        buffer() {
-            const response = this.native;
-            const parse = $.$mol_fiber_sync(response.arrayBuffer);
-            return parse.call(response);
-        }
-        xml() {
-            return $.$mol_dom_parse(this.text(), 'application/xml');
-        }
-        xhtml() {
-            return $.$mol_dom_parse(this.text(), 'application/xhtml+xml');
-        }
-        html() {
-            return $.$mol_dom_parse(this.text(), 'text/html');
-        }
-    }
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch_response.prototype, "stream", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch_response.prototype, "text", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch_response.prototype, "json", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch_response.prototype, "buffer", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch_response.prototype, "xml", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch_response.prototype, "xhtml", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch_response.prototype, "html", null);
-    $.$mol_fetch_response = $mol_fetch_response;
-    class $mol_fetch extends $.$mol_object2 {
-        static response(input, init) {
-            const response = this.request(input, init);
-            if (Math.floor(response.status / 100) === 2)
-                return new $mol_fetch_response(response);
-            throw new Error(response.statusText || `HTTP Error ${response.status}`);
-        }
-        static stream(input, init) {
-            return this.response(input, init).stream();
-        }
-        static text(input, init) {
-            return this.response(input, init).text();
-        }
-        static json(input, init) {
-            return this.response(input, init).json();
-        }
-        static buffer(input, init) {
-            this.response(input, init).buffer();
-        }
-        static xml(input, init) {
-            return this.response(input, init).xml();
-        }
-        static xhtml(input, init) {
-            return this.response(input, init).xhtml();
-        }
-        static html(input, init) {
-            return this.response(input, init).html();
-        }
-    }
-    $mol_fetch.request = $.$mol_fiber_sync((input, init = {}) => {
-        if (typeof AbortController === 'function') {
-            var controller = new AbortController();
-            init.signal = controller.signal;
-            const fiber = $.$mol_fiber.current;
-            fiber.abort = () => {
-                if (fiber.cursor === -2)
-                    return true;
-                controller.abort();
-                return true;
-            };
-        }
-        let native = $.$mol_dom_context.fetch;
-        if (!native)
-            native = $node['node-fetch'];
-        return native(input, init);
-    });
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch, "response", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch, "stream", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch, "text", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch, "json", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch, "buffer", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch, "xml", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch, "xhtml", null);
-    __decorate([
-        $.$mol_fiber.method
-    ], $mol_fetch, "html", null);
-    $.$mol_fetch = $mol_fetch;
-})($ || ($ = {}));
-//fetch.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_file_not_found extends Error {
-    }
-    $.$mol_file_not_found = $mol_file_not_found;
-    class $mol_file extends $.$mol_object {
-        static absolute(path) {
-            throw new Error('Not implemented yet');
-        }
-        static relative(path) {
-            throw new Error('Not implemented yet');
-        }
-        path() {
-            return '.';
-        }
-        parent() {
-            return this.resolve('..');
-        }
-        reset() {
-            try {
-                this.stat(undefined, $.$mol_mem_force_cache);
-            }
-            catch (error) {
-                if (error instanceof $mol_file_not_found)
-                    return;
-                return $.$mol_fail_hidden(error);
-            }
-        }
-        version() {
-            return this.stat().mtime.getTime().toString(36).toUpperCase();
-        }
-        exists(next) {
-            let exists = true;
-            try {
-                this.stat();
-            }
-            catch (error) {
-                if (error instanceof $mol_file_not_found)
-                    exists = false;
-                else
-                    return $.$mol_fail_hidden(error);
-            }
-            if (next === undefined)
-                return exists;
-            if (next === exists)
-                return exists;
-            if (next)
-                this.parent().exists(true);
-            this.ensure(next);
-            this.reset();
-            return next;
-        }
-        type() {
-            return this.stat().type;
-        }
-        name() {
-            return this.path().replace(/^.*\//, '');
-        }
-        ext() {
-            const match = /((?:\.\w+)+)$/.exec(this.path());
-            return match ? match[1].substring(1) : '';
-        }
-        text(next, force) {
-            return $.$mol_charset_decode(this.buffer(next === undefined ? undefined : $.$mol_charset_encode(next), force));
-        }
-        fail(error) {
-            this.buffer(error, $.$mol_mem_force_fail);
-            this.stat(error, $.$mol_mem_force_fail);
-        }
-        buffer_cached(buffer) {
-            const ctime = new Date();
-            const stat = {
-                type: 'file',
-                size: buffer.length,
-                ctime,
-                atime: ctime,
-                mtime: ctime
-            };
-            this.buffer(buffer, $.$mol_mem_force_cache);
-            this.stat(stat, $.$mol_mem_force_cache);
-        }
-        text_cached(content) {
-            this.buffer_cached($.$mol_charset_encode(content));
-        }
-        find(include, exclude) {
-            const found = [];
-            const sub = this.sub();
-            for (const child of sub) {
-                const child_path = child.path();
-                if (exclude && child_path.match(exclude))
-                    continue;
-                if (!include || child_path.match(include))
-                    found.push(child);
-                if (child.type() === 'dir') {
-                    const sub_child = child.find(include, exclude);
-                    for (const child of sub_child)
-                        found.push(child);
-                }
-            }
-            return found;
-        }
-    }
-    __decorate([
-        $.$mol_mem_key
-    ], $mol_file, "absolute", null);
-    $.$mol_file = $mol_file;
-})($ || ($ = {}));
-//file.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_file_web extends $.$mol_file {
-        static absolute(path) {
-            return this.make({
-                path: $.$mol_const(path)
-            });
-        }
-        static relative(path) {
-            return this.absolute(new URL(path, this.base).toString());
-        }
-        buffer(next, force) {
-            if (next !== undefined)
-                throw new Error(`Saving content not supported: ${this.path}`);
-            const response = $.$mol_fetch.response(this.path());
-            if (response.native.status === 404)
-                throw new $.$mol_file_not_found(`File not found: ${this.path()}`);
-            return new Uint8Array(response.buffer());
-        }
-        watcher() {
-            throw new Error('$mol_file_web.watcher() not implemented');
-        }
-        stat(next, force) {
-            let stat = next;
-            if (next === undefined) {
-                const content = this.text();
-                const ctime = new Date();
-                stat = {
-                    type: 'file',
-                    size: content.length,
-                    ctime,
-                    atime: ctime,
-                    mtime: ctime
-                };
-            }
-            this.parent().watcher();
-            return stat;
-        }
-        resolve(path) {
-            let res = this.path() + '/' + path;
-            while (true) {
-                let prev = res;
-                res = res.replace(/\/[^\/.]+\/\.\.\//, '/');
-                if (prev === res)
-                    break;
-            }
-            return this.constructor.absolute(res);
-        }
-        ensure(next) {
-            throw new Error('$mol_file_web.ensure() not implemented');
-        }
-        sub() {
-            throw new Error('$mol_file_web.sub() not implemented');
-        }
-        relate(base = this.constructor.relative('.')) {
-            throw new Error('$mol_file_web.relate() not implemented');
-        }
-        append(next) {
-            throw new Error('$mol_file_web.append() not implemented');
-        }
-    }
-    $mol_file_web.base = $.$mol_dom_context.document
-        ? new URL('.', $.$mol_dom_context.document.currentScript['src']).toString()
-        : '';
-    __decorate([
-        $.$mol_mem
-    ], $mol_file_web.prototype, "buffer", null);
-    __decorate([
-        $.$mol_mem
-    ], $mol_file_web.prototype, "stat", null);
-    __decorate([
-        $.$mol_mem
-    ], $mol_file_web.prototype, "sub", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $mol_file_web, "absolute", null);
-    $.$mol_file_web = $mol_file_web;
-    $.$mol_file = $mol_file_web;
-})($ || ($ = {}));
-//file.web.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_locale extends $.$mol_object {
-        static lang_default() {
-            return 'en';
-        }
-        static lang(next) {
-            return $.$mol_state_local.value('locale', next) || $.$mol_dom_context.navigator.language.replace(/-.*/, '') || this.lang_default();
-        }
-        static source(lang) {
-            return JSON.parse($.$mol_file.relative(`web.locale=${lang}.json`).text().toString());
-        }
-        static texts(lang, next) {
-            if (next)
-                return next;
-            try {
-                return this.source(lang).valueOf();
-            }
-            catch (error) {
-                if ('then' in error)
-                    $.$mol_fail_hidden(error);
-                const def = this.lang_default();
-                if (lang === def)
-                    throw error;
-                return this.source(def);
-            }
-        }
-        static text(key) {
-            for (let lang of [this.lang(), 'en']) {
-                const text = this.texts(lang)[key];
-                if (text)
-                    return text;
-                console.warn(`Not translated to "${lang}": ${key}`);
-            }
-            return `<${key}>`;
-        }
-    }
-    __decorate([
-        $.$mol_mem
-    ], $mol_locale, "lang_default", null);
-    __decorate([
-        $.$mol_mem
-    ], $mol_locale, "lang", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $mol_locale, "source", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $mol_locale, "texts", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $mol_locale, "text", null);
-    $.$mol_locale = $mol_locale;
-})($ || ($ = {}));
-//locale.js.map
-;
-"use strict";
-var $;
-(function ($) {
     $.$mol_style_attach("mol/image/image.view.css", "[mol_image] {\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line);\n\tborder-radius: var(--mol_skin_round);\n\toverflow: hidden;\n\tflex: 0 1 auto;\n\tmax-width: 100%;\n}\n");
 })($ || ($ = {}));
 //image.view.css.js.map
@@ -3837,7 +3837,7 @@ var $node = $node || {} ; $node[ "/my/portfolio/logo.svg" ] = "data:image/svg+xm
 "use strict";
 var $;
 (function ($) {
-    $.$mol_style_attach("my/portfolio/portfolio.view.css", "\n[mol_theme] {\n\tbackground-color: var(--mol_theme_back);\n\tcolor: var(--mol_theme_text);\n\tfill: var(--mol_theme_text);\n}\n\n@media (prefers-color-scheme: light) {\n\t[mol_theme=\"$mol_theme_auto\"] {\n\t\t--mol_theme_back: hsl( 210 , 50% , 99% );\n\t\t--mol_theme_hover: rgba( 0 , 0 , 0 , .05 );\n\t\t--mol_theme_current: hsl( 210 , 100% , 80% );\n\t\t--mol_theme_text: rgba( 0 , 0 , 0 , .9 );\n\t\t--mol_theme_control: hsl(267, 45%, 35%,0.5);\n\t\t--mol_theme_shade: rgba( 0 , 0 , 0 , .5 );\n\t\t--mol_theme_line: rgba( 220 , 220 , 220 , 1 );\n\t\t--mol_theme_focus: hsla( 0 , 60% , 50% , 0.75 );\n\t\t--mol_theme_field: white;\n\t}\n}\n\n@media (prefers-color-scheme: dark) {\n\t[mol_theme=\"$mol_theme_auto\"] {\n\t\t--mol_theme_back: hsl( 210 , 50% , 10% );\n\t\t--mol_theme_hover: #333;\n\t\t--mol_theme_current: hsl( 210 , 100% , 20% );\n\t\t--mol_theme_text: rgba( 255 , 255 , 255 , .8 );\n\t\t--mol_theme_control: hsl(267, 45%, 35%);\n\t\t--mol_theme_shade: rgb(43, 17, 64);\n\t\t--mol_theme_line: rgba( 50 , 50 , 50 , 1 );\n\t\t--mol_theme_focus: rgba( 204 , 68 , 50 , .75 );\n\t\t--mol_theme_field: black;\n\t}\n}\n\n\n[my_portfolio_page_head]{\n\tdisplay: flex;\n\tjustify-content: start;\n\tbackground: #553282;\n}\n[mol_page_body]{\n\tdisplay: grid;\n    grid-template-rows: repeat(4,50vh);\n\tgrid-template-columns: repeat(4,1fr);\n\tgrid-gap: 1rem;\n}\n[my_portfolio_image]{\n\tbox-shadow: none;\n\tmax-width: 15vh;\n\t\n}\n[my_portfolio_app_title]{\n\tcolor: #553282;\n}\n\n[my_portfolio_app]{\n\tmargin: 10px;\n    -webkit-box-shadow: 8px 0px 20px -2px rgb(85, 39, 97);\n    -moz-box-shadow: 8px 0px 20px -2px rgb(85, 39, 97);\n    box-shadow: 8px 0px 20px -2px var(--mol_theme_shade);\n}\n");
+    $.$mol_style_attach("my/portfolio/portfolio.view.css", "[my_portfolio_scroll] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tpadding: .5rem;\n}\n\n\n[mol_theme] {\n\tbackground-color: var(--mol_theme_back);\n\tcolor: var(--mol_theme_text);\n\tfill: var(--mol_theme_text);\n}\n\n@media (prefers-color-scheme: light) {\n\t[mol_theme=\"$mol_theme_auto\"] {\n\t\t--mol_theme_back: hsl( 210 , 50% , 99% );\n\t\t--mol_theme_hover: rgba( 0 , 0 , 0 , .05 );\n\t\t--mol_theme_current: hsl( 210 , 100% , 80% );\n\t\t--mol_theme_text: rgba( 0 , 0 , 0 , .9 );\n\t\t--mol_theme_control: hsl(267, 45%, 35%,0.5);\n\t\t--mol_theme_shade: rgba( 0 , 0 , 0 , .5 );\n\t\t--mol_theme_line: rgba( 220 , 220 , 220 , 1 );\n\t\t--mol_theme_focus: hsla( 0 , 60% , 50% , 0.75 );\n\t\t--mol_theme_field: white;\n\t}\n}\n\n@media (prefers-color-scheme: dark) {\n\t[mol_theme=\"$mol_theme_auto\"] {\n\t\t--mol_theme_back: hsl( 210 , 50% , 10% );\n\t\t--mol_theme_hover: #333;\n\t\t--mol_theme_current: hsl( 210 , 100% , 20% );\n\t\t--mol_theme_text: rgba( 255 , 255 , 255 , .8 );\n\t\t--mol_theme_control: hsl(267, 45%, 35%);\n\t\t--mol_theme_shade: rgb(43, 17, 64);\n\t\t--mol_theme_line: rgba( 50 , 50 , 50 , 1 );\n\t\t--mol_theme_focus: rgba( 204 , 68 , 50 , .75 );\n\t\t--mol_theme_field: black;\n\t}\n}\n\n[my_portfolio] {\n\tdisplay: flex;\n\tbackground: var(--mol_theme_field);\n}\n[my_portfolio_page_head]{\n\tdisplay: flex;\n\tjustify-content: start;\n\tbackground: #553282;\n}\n[my_portfolio_app]{\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex: 1 1 26rem;\n\tmargin: 0;\n\theight: 15.5rem;\n\tcursor: pointer;\n}\n[my_portfolio_image]{\n\tbox-shadow: none;\n\tmax-width: 15vh;\n\t\n}\n[my_portfolio_app_title]{\n\tcolor: #553282;\n}\n\n[my_portfolio_app]{\n\tmargin: 10px;\n    -webkit-box-shadow: 8px 0px 20px -2px rgb(85, 39, 97);\n    -moz-box-shadow: 8px 0px 20px -2px rgb(85, 39, 97);\n    box-shadow: 8px 0px 20px -2px var(--mol_theme_shade);\n}\n[my_portfolio_app_demo]{\n\tpointer-events: none;\n\tbox-shadow: 0 0 0 2px var(--mol_theme_line);\n\twidth: 200%;\n\theight: 26rem;\n\ttransform: translate( -25% , -25% ) scale( .5 );\n\tbackground-size: cover;\n}\n");
 })($ || ($ = {}));
 //portfolio.view.css.js.map
 ;
@@ -3860,7 +3860,7 @@ var $;
             return ((obj) => {
                 obj.title = () => null;
                 obj.head = () => [this.Image()];
-                obj.body = () => [this.caffeine(), this.uztelecom(), this.spphone(), this.korean(), this.mediabox()];
+                obj.body = () => [this.Scroll()];
                 obj.foot = () => [null];
                 return obj;
             })(new this.$.$mol_page());
@@ -3873,6 +3873,15 @@ var $;
         }
         image() {
             return "my/portfolio/logo.svg";
+        }
+        Scroll() {
+            return ((obj) => {
+                obj.sub = () => this.apps();
+                return obj;
+            })(new this.$.$mol_scroll());
+        }
+        apps() {
+            return [this.caffeine(), this.uztelecom(), this.spphone(), this.korean(), this.mediabox(), this.sayyidashahlo()];
         }
         caffeine() {
             return ((obj) => {
@@ -3909,6 +3918,13 @@ var $;
                 return obj;
             })(new this.$.$my_portfolio_app());
         }
+        sayyidashahlo() {
+            return ((obj) => {
+                obj.title = () => this.$.$mol_locale.text("$my_portfolio_sayyidashahlo");
+                obj.details = () => "https://sayyidashahlo.uz";
+                return obj;
+            })(new this.$.$my_portfolio_app());
+        }
     }
     __decorate([
         $.$mol_mem
@@ -3916,6 +3932,9 @@ var $;
     __decorate([
         $.$mol_mem
     ], $my_portfolio.prototype, "Image", null);
+    __decorate([
+        $.$mol_mem
+    ], $my_portfolio.prototype, "Scroll", null);
     __decorate([
         $.$mol_mem
     ], $my_portfolio.prototype, "caffeine", null);
@@ -3931,6 +3950,9 @@ var $;
     __decorate([
         $.$mol_mem
     ], $my_portfolio.prototype, "mediabox", null);
+    __decorate([
+        $.$mol_mem
+    ], $my_portfolio.prototype, "sayyidashahlo", null);
     $.$my_portfolio = $my_portfolio;
 })($ || ($ = {}));
 (function ($) {

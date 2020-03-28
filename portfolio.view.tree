@@ -7,7 +7,7 @@ $my_portfolio $mol_demo_large
 			head /
 				<= Image $mol_image
 					uri <= image \my/portfolio/logo.svg
-			body /
+			body / <= Scroll $mol_scroll sub <= apps /
 				<= caffeine $my_portfolio_app
 					title @ \ caffeine
 					details \http://caffeine.uz
@@ -23,6 +23,9 @@ $my_portfolio $mol_demo_large
 				<= mediabox $my_portfolio_app
 					title @ \ mediabox
 					details \https://mediabox.uz
+				<= sayyidashahlo $my_portfolio_app
+					title @ \ sayyidashahlo
+					details \https://sayyidashahlo.uz
 			foot / null
 $my_portfolio_app $mol_link
 	target \_blank

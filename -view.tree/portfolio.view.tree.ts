@@ -34,12 +34,7 @@ namespace $ { export class $my_portfolio extends $mol_demo_large {
 	 *  Page $mol_page
 	 *  	title null
 	 *  	head / <= Image
-	 *  	body /
-	 *  		<= caffeine
-	 *  		<= uztelecom
-	 *  		<= spphone
-	 *  		<= korean
-	 *  		<= mediabox
+	 *  	body / <= Scroll
 	 *  	foot / null
 	 *  ```
 	 **/
@@ -48,7 +43,7 @@ namespace $ { export class $my_portfolio extends $mol_demo_large {
 		return (( obj )=>{
 			obj.title = () => null as any
 			obj.head = () => [ this.Image() ] as readonly any[]
-			obj.body = () => [ this.caffeine() , this.uztelecom() , this.spphone() , this.korean() , this.mediabox() ] as readonly any[]
+			obj.body = () => [ this.Scroll() ] as readonly any[]
 			obj.foot = () => [ null as any ] as readonly any[]
 			return obj
 		})( new this.$.$mol_page(  ) )
@@ -74,6 +69,34 @@ namespace $ { export class $my_portfolio extends $mol_demo_large {
 	 **/
 	image() {
 		return "my/portfolio/logo.svg"
+	}
+
+	/**
+	 *  ```
+	 *  Scroll $mol_scroll sub <= apps
+	 *  ```
+	 **/
+	@ $mol_mem
+	Scroll() {
+		return (( obj )=>{
+			obj.sub = () => this.apps()
+			return obj
+		})( new this.$.$mol_scroll(  ) )
+	}
+
+	/**
+	 *  ```
+	 *  apps /
+	 *  	<= caffeine
+	 *  	<= uztelecom
+	 *  	<= spphone
+	 *  	<= korean
+	 *  	<= mediabox
+	 *  	<= sayyidashahlo
+	 *  ```
+	 **/
+	apps() {
+		return [ this.caffeine() , this.uztelecom() , this.spphone() , this.korean() , this.mediabox() , this.sayyidashahlo() ] as readonly any[]
 	}
 
 	/**
@@ -152,6 +175,22 @@ namespace $ { export class $my_portfolio extends $mol_demo_large {
 		return (( obj )=>{
 			obj.title = () => this.$.$mol_locale.text( "$my_portfolio_mediabox" )
 			obj.details = () => "https://mediabox.uz"
+			return obj
+		})( new this.$.$my_portfolio_app(  ) )
+	}
+
+	/**
+	 *  ```
+	 *  sayyidashahlo $my_portfolio_app
+	 *  	title @ \ sayyidashahlo
+	 *  	details \https://sayyidashahlo.uz
+	 *  ```
+	 **/
+	@ $mol_mem
+	sayyidashahlo() {
+		return (( obj )=>{
+			obj.title = () => this.$.$mol_locale.text( "$my_portfolio_sayyidashahlo" )
+			obj.details = () => "https://sayyidashahlo.uz"
 			return obj
 		})( new this.$.$my_portfolio_app(  ) )
 	}
