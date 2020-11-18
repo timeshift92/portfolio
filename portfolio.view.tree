@@ -7,7 +7,7 @@ $my_portfolio $mol_demo_large
 			head /
 				<= Image $mol_image
 					uri <= image \my/portfolio/logo.svg
-			body / <= Scroll $mol_scroll sub <= apps /
+			body /
 				<= caffeine $my_portfolio_app
 					title @ \ caffeine
 					details \http://caffeine.uz
@@ -18,8 +18,8 @@ $my_portfolio $mol_demo_large
 					title @ \ spphone
 					details \https://spphone.uz
 				<= korean $my_portfolio_app
-					title @ \ korean
-					details \https://korean.uz
+					title @ \ Romana
+					details \https://romana.uz/ru
 				<= mediabox $my_portfolio_app
 					title @ \ mediabox
 					details \https://mediabox.uz

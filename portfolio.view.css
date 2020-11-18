@@ -43,6 +43,10 @@
 	display: flex;
 	background: var(--mol_theme_field);
 }
+
+[my_portfolio_app] {
+	width: 100vw;
+}
 [my_portfolio_page_head]{
 	display: flex;
 	justify-content: start;
