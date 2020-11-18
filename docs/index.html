@@ -1,50 +1,107 @@
-<!doctype html>
-<html style=" width : 100% ; height : 100% ; position : fixed ">
+<!DOCTYPE html>
+<html lang="en" data-nu-scheme-is="light" nu-prevent>
 
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-<meta name="fragment" content="!">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <meta name="fragment" content="!">
 
-<link rel="manifest" href="mol/app/demo/manifest.json">
+    <link rel="manifest" href="mol/app/demo/manifest.json">
 
-<!-- description -->
-<meta name="description" content="$mol framework demo application">
-<meta name="application-name" content="$mol">
-<meta name="apple-mobile-web-app-title" content="$mol Demo">
+    <!-- description -->
+    <meta name="description" content="$mol framework demo application">
+    <meta name="application-name" content="$mol">
+    <meta name="apple-mobile-web-app-title" content="$mol Demo">
 
-<!-- colors -->
-<meta name="theme-color" content="#000000">
-<meta name="msapplication-TileColor" content="#000000">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- colors -->
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<!-- logo -->
-<link href="my/portfolio/logo.svg" rel="icon" />
-<link rel="apple-touch-icon" sizes="128x128" href="my/portfolio/logo.svg">
-<link rel="apple-touch-icon-precomposed" sizes="128x128" href="my/portfolio/logo.svg">
-<meta name="msapplication-TileImage" content="mol/logo/logo_192.png">
+    <!-- logo -->
+    <link href="/logo.svg" rel="icon" />
+    <link rel="apple-touch-icon" sizes="128x128" href="/logo.svg">
+    <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/logo.svg">
+    <meta name="msapplication-TileImage" content="mol/logo/logo_192.png">
 
-<!-- full screen -->
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- full screen -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-<body style="width:100%;height: 100%;margin: 0">
-	<div mol_view_root="$my_portfolio">
-		<script src="web.js" charset="utf-8"></script>
-	</div>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/numl@1.0.0-beta.10/dist/index.js"></script>
+    <style>
+        *:not(:defined) {
+            visibility: hidden;
+        }
+    </style>
 
-				<script src="/mol/build/client/client.js" charset="utf-8"></script>
-				<script>
-					setTimeout( ()=> {
+    <title>TS corp</title>
+</head>
 
-						const test = document.createElement( 'script' )
-						test.src = 'web.test.js'
-						
-						const audit =  document.createElement( 'script' )
-						audit.src = 'web.audit.js'
-						
-						test.onload = ()=> document.head.appendChild( audit )
-						document.head.appendChild( test )
+<body>
+    <nu-root>
+        <nu-theme hue="256"></nu-theme>
+        <nu-card text="monospace" gap>
+            <!-- <nu-attrs for="region" display="grid" flow="row" radius border fill="bg" padding></nu-attrs> -->
+            <nu-attrs for="customCard" padding radius="2x" clear use-offset transition="move :offset[no]"
+                    move="(--offset-x * 1x) (--offset-y * 1x)"></nu-attrs>
+            <nu-header>
+                <nu-attrs for="btn" padding radius="2x" clear use-offset transition="move :offset[no]"
+                    move="(--offset-x * 1x) (--offset-y * 1x)"></nu-attrs>
+                <nu-flex content="space-between">
+                    <nu-svg width="15%" color="#light" src="/logo.svg"></nu-svg>
+                    <nu-btn to="!https://github.com/tenphi" label="Github">
+                        <nu-img src="/telegram.png"></nu-img>
+                    </nu-btn>
 
-					}, 250 )
-				</script>
-				</body>
+
+                </nu-flex>
+
+            </nu-header>
+
+            <nu-heading text="center" level=1>
+                Проекты
+            </nu-heading>
+
+
+
+            <nu-grid columns="repeat(3,1fr)" wrap='y' gap use-action to="!https://uztelecom.uz/" >
+                <nu-card id="customCard">
+                    <nu-heading level=2> Uztelecom </nu-heading>
+                    <nu-img  src="/uztelecom.png"></nu-img>
+
+                </nu-card>
+                <nu-card id="customCard" use-action to="!https://romana.uz/">
+                    <nu-heading level=2> Romana </nu-heading>
+                    <nu-img src="/romana.png"></nu-img>
+
+                </nu-card>
+                <nu-card id="customCard" use-action to="!https://mediabox.uz/">
+                    <nu-heading level=2> Mediabox </nu-heading>
+                    <nu-img src="/mediabox.png"></nu-img>
+
+                </nu-card>
+                <nu-card id="customCard" use-action to="!https://sayyidashahlo.uz/">
+                    <nu-heading level=2> Sayyidashahlo </nu-heading>
+                    <nu-img src="/sayyidashahlo.png"></nu-img>
+
+                </nu-card>
+                <nu-card id="customCard" use-action to="!https://spphone.uz/">
+                    <nu-heading level=2> Spphone </nu-heading>
+                    <nu-img src="/spphone.png"></nu-img>
+
+                </nu-card>
+
+                <nu-card id="customCard" use-action to="!https://lynx.uz/">
+                    <nu-heading level=2> Lynx </nu-heading>
+                    <nu-img src="/lynx.png"></nu-img>
+
+                </nu-card>
+                
+            </nu-grid>
+
+            </nu-flow>
+    </nu-root>
+</body>
+
+</html>
